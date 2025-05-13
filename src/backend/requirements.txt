@@ -232,7 +232,7 @@ pgvector==0.3.6
     # via fastapi-app (pyproject.toml)
 portalocker==2.10.1
     # via msal-extensions
-propcache==0.2.1
+propcache==0.3.1
     # via
     #   aiohttp
     #   yarl
