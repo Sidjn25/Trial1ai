@@ -69,7 +69,7 @@ exceptiongroup==1.2.2
     # via anyio
 fastapi==0.115.8
     # via fastapi-app (pyproject.toml)
-fixedint==0.1.6
+fixedint==0.2.0
     # via azure-monitor-opentelemetry-exporter
 frozenlist==1.5.0
     # via
