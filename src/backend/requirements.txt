@@ -236,7 +236,7 @@ propcache==0.2.1
     # via
     #   aiohttp
     #   yarl
-psutil==5.9.8
+psutil==7.0.0
     # via azure-monitor-opentelemetry-exporter
 pycparser==2.22
     # via cffi
