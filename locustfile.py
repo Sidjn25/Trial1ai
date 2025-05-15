@@ -17,7 +17,7 @@ class ChatUser(HttpUser):
                 "messages": [
                     {
                         "content": random.choice(
-                            ["locustfilepy-snapshots-tests", "Climbing shoe cheaper than $30?", "Waterproof camping gear?"]
+                            ["locustfilepy", "Climbing shoe cheaper than $30?", "Waterproof camping gear?"]
                         ),
                         "role": "user",
                     }
