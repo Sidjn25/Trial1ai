@@ -263,13 +263,14 @@ const Chat = () => {
                         </div>
                     )}
 
-                    <div className={styles.chatInput}>
+                    <div className={styles.chatInput} style={{ display: "flex", alignItems: "center" }>
                         <QuestionInput
                             clearOnSend
                             placeholder="Type a new question (e.g. does my plan cover annual eye exams?)"
                             disabled={isLoading}
                             onSend={question => makeApiRequest(question)}
                         />
+                        <VoiceInput onResult={makeApiRequest} />
                     </div>
                 </div>
 
