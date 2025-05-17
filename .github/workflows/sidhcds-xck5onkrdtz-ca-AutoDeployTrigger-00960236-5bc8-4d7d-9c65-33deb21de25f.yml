@@ -1,8 +1,6 @@
 name: Trigger auto deployment for sidhcds-xck5onkrdtz-ca
 
-# When this action will be executed
 on:
-# Automatically trigger it when detected changes in repo
   push:
     branches: 
       [ main ]
@@ -10,14 +8,12 @@ on:
       - '**'
       - '.github/workflows/sidhcds-xck5onkrdtz-ca-AutoDeployTrigger-00960236-5bc8-4d7d-9c65-33deb21de25f.yml'
 
-  # Allow manual trigger 
   workflow_dispatch:
       
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
       contents: read
 
     steps:
