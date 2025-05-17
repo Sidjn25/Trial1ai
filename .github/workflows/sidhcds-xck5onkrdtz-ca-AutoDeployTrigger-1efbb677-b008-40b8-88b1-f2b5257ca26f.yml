@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - '**'
-      - '.github/workflows/sidhcds-xck5onkrdtz-ca-AutoDeployTrigger-2426d438-5c2e-4029-ad46-47006a7a5748.yml'
+      - '.github/workflows/sidhcds-xck5onkrdtz-ca-AutoDeployTrigger-1efbb677-b008-40b8-88b1-f2b5257ca26f.yml'
   workflow_dispatch:
 
 jobs:
