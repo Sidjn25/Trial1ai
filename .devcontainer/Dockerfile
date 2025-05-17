@@ -1,5 +1,4 @@
-ARG IMAGE=bullseye
-FROM mcr.microsoft.com/devcontainers/${IMAGE}
+FROM mcr.microsoft.com/devcontainers/base:debian-11
 
 ENV PYTHONUNBUFFERED 1
 
