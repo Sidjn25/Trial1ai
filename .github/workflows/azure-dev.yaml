@@ -53,7 +53,7 @@ jobs:
       - name: Provision Infrastructure
         run: azd provision --no-prompt --environment ${{ env.AZURE_ENV_NAME }}
         env:
-          AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+          AZURE_ENV_NAME: sidhcds-xck5onkrdtzde-containerapps-env
 
       - name: Deploy Application
         run: azd deploy --no-prompt --environment ${{ env.AZURE_ENV_NAME }}
