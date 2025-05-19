@@ -1,57 +1,63 @@
+# ==============================================================
+# GitHub Actions Workflow: Azure Deployment with azd
+#
+# This workflow provisions Azure resources and deploys the app using the Azure Developer CLI (azd).
+#
+# Prerequisites:
+#   - Repository variables (Settings > Variables) must be set for Azure credentials and environment:
+#       AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID, AZURE_ENV_NAME
+#   - Federated credentials must be configured between GitHub and an Azure AD App Registration.
+#
+# Maintainer notes:
+#   - Environment name is managed via AZURE_ENV_NAME variable for easier updates.
+#   - Any changes to provisioning or deployment steps should be tested on a separate branch first.
+# ==============================================================
+
 name: Deploy with azd
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
 
-permissions:
-  id-token: write
-  contents: read
+env:
+  AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+  AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+  AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+  AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-      AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
-      AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-      AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
-      AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-      DEPLOY_AZURE_OPENAI: ${{ vars.DEPLOY_AZURE_OPENAI }}
-      AZURE_OPENAI_CHAT_MODEL: ${{ vars.AZURE_OPENAI_CHAT_MODEL }}
-      AZURE_OPENAI_CHAT_DEPLOYMENT: ${{ vars.AZURE_OPENAI_CHAT_DEPLOYMENT }}
-      AZURE_OPENAI_CHAT_DEPLOYMENT_VERSION: ${{ vars.AZURE_OPENAI_CHAT_DEPLOYMENT_VERSION }}
-      AZURE_OPENAI_CHAT_DEPLOYMENT_CAPACITY: ${{ vars.AZURE_OPENAI_CHAT_DEPLOYMENT_CAPACITY }}
-      AZURE_OPENAI_EMBED_MODEL: ${{ vars.AZURE_OPENAI_EMBED_MODEL }}
-      AZURE_OPENAI_EMBED_DEPLOYMENT: ${{ vars.AZURE_OPENAI_EMBED_DEPLOYMENT }}
-      AZURE_OPENAI_EMBED_DEPLOYMENT_VERSION: ${{ vars.AZURE_OPENAI_EMBED_DEPLOYMENT_VERSION }}
-      AZURE_OPENAI_EMBED_DEPLOYMENT_CAPACITY: ${{ vars.AZURE_OPENAI_EMBED_DEPLOYMENT_CAPACITY }}
-      AZURE_OPENAI_EMBED_DIMENSIONS: ${{ vars.AZURE_OPENAI_EMBED_DIMENSIONS }}
-      USE_AI_PROJECT: ${{ vars.USE_AI_PROJECT }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install azd
-        uses: Azure/setup-azd@v2.1.0
-
-      - name: Install Nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Set up Azure Developer CLI
+        uses: Azure/setup-azd@v1
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
         run: |
+          set -e
           azd auth login \
             --client-id "$AZURE_CLIENT_ID" \
             --federated-credential-provider "github" \
             --tenant-id "$AZURE_TENANT_ID"
+          if [ $? -ne 0 ]; then
+            echo "Azure login failed! Please check your credentials and federated identity setup."
+            exit 1
+          fi
         shell: bash
 
+      - name: Show azd version
+        run: azd version
+
+      - name: Show azd account after login
+        run: azd auth whoami
+
       - name: Provision Infrastructure
-        run: azd provision --no-prompt --environment sidhcds-xck5onkrdtzde-containerapps-env
-      
+        run: azd provision --no-prompt --environment $AZURE_ENV_NAME
+
       - name: Deploy Application
-        run: azd deploy --no-prompt --environment sidhcds-xck5onkrdtzde-containerapps-env
+        run: azd deploy --no-prompt --environment $AZURE_ENV_NAME
