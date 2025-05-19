@@ -33,8 +33,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Azure Developer CLI
-        uses: Azure/setup-azd@v1
+      - name: Install Azure Developer CLI (azd) 
+        run: |
+          curl -fsSL https://aka.ms/install-azd.sh | bash
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
