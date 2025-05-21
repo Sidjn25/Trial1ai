@@ -15,6 +15,10 @@
 
 name: Deploy with azd
 
+permissions:
+  id-token: write
+  contents: read
+
 on:
   push:
     branches:
