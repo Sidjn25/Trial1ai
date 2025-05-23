@@ -60,6 +60,8 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, init
                 onKeyDown={onEnterPress}
             />
             <div className={styles.questionInputButtonsContainer}>
+                {/* Voice button at the top */}
+                {voiceButton}
                 <Tooltip content="Ask question button" relationship="label">
                     <Button size="large" icon={<Send28Filled primaryFill="rgba(115, 118, 225, 1)" />} onClick={sendQuestion} />
                 </Tooltip>
