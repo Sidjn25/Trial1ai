@@ -9,9 +9,9 @@ const Layout = () => {
             <header className={styles.header} role={"banner"}>
                 <div className={styles.headerContainer}>
                     <Link to="/" className={styles.headerTitleContainer}>
-                        <h3 className={styles.headerTitle}>Layout tsx-layout-src</h3>
+                        <h3 className={styles.headerTitle}>HCDS Technologies - Enterprise Innovation with Digital Transformation</h3>
                     </Link>
-                    <h4 className={styles.headerRightText}>Layout tsx-layout-src</h4>
+                    <h4 className={styles.headerRightText}></h4>
                 </div>
             </header>
 

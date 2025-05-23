@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 import { Stack, TextField } from "@fluentui/react";
 import { Button, Tooltip } from "@fluentui/react-components";
 import { Send28Filled } from "@fluentui/react-icons";
@@ -11,9 +11,10 @@ interface Props {
     initQuestion?: string;
     placeholder?: string;
     clearOnSend?: boolean;
+    voiceButton?: ReactNode;
 }
 
-export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, initQuestion }: Props) => {
+export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, initQuestion, voiceButton }: Props) => {
     const [question, setQuestion] = useState<string>("");
 
     useEffect(() => {

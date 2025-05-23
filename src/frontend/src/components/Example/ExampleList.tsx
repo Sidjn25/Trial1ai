@@ -3,9 +3,11 @@ import { Example } from "./Example";
 import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
-    "src-frontend-src-components-Example-ExampleListtsx",
-    "Climbing gear cheaper than $30?",
-    "Waterproof camping gear?",
+    "Welcome",
+    "Enterprise",
+    "Carrier",
+    "Job Opportunity",
+    "Internship",
 ];
 
 interface Props {

@@ -47,7 +47,16 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ onResult }) => {
       type="button"
       onClick={listening ? stopRecognition : startRecognition}
       aria-label={listening ? "Stop recording" : "Speak your question"}
-      style={{ marginLeft: 8, fontSize: 22, cursor: "pointer" }}
+      style={{
+      marginLeft: 8,
+      fontSize: 22,
+      cursor: "pointer",
+      border: "none",         // <-- Add this line
+      background: "none",     // <-- Optional: removes background
+      boxShadow: "none",      // <-- Optional: removes any shadow
+      outline: "none",        // <-- Optional: removes focus outline
+      padding: 0              // <-- Optional: adjust as needed
+      }}
     >
       {listening ? "🛑" : "🎤"}
     </button>

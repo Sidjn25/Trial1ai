@@ -5,7 +5,7 @@
 }
 
 .header {
-    background-color: #222222;
+    background-color: #2222;
     color: #f2f2f2;
 }
 
@@ -20,13 +20,18 @@
 .headerTitleContainer {
     display: flex;
     align-items: center;
-    margin-right: 40px;
-    color: #f2f2f2;
+    margin-right: 20px;
+    color: #222;
     text-decoration: none;
 }
 
 .headerLogo {
     height: 40px;
+    transition: transform 0.5s ease;
+}
+
+.headerLogo:hover {
+    transform: rotate(360deg);
 }
 
 .headerTitle {
