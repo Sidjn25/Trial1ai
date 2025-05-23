@@ -9,6 +9,7 @@ import { AIChatProtocolClient, AIChatMessage } from "@microsoft/ai-chat-protocol
 import { Answer, AnswerError, AnswerLoading } from "../../components/Answer";
 import { QuestionInput } from "../../components/QuestionInput";
 import { ExampleList } from "../../components/Example";
+import VoiceInput from "../../components/VoiceInput";
 import { UserChatMessage } from "../../components/UserChatMessage";
 import { AnalysisPanel, AnalysisPanelTabs } from "../../components/AnalysisPanel";
 import { SettingsButton } from "../../components/SettingsButton";
@@ -269,8 +270,9 @@ const Chat = () => {
                             placeholder="Type a new question (e.g. does my plan cover annual eye exams?)"
                             disabled={isLoading}
                             onSend={question => makeApiRequest(question)}
+                            voiceButton={<VoiceInput onResult={makeApiRequest} />} // Pass VoiceInput here
                         />
-                        <VoiceInput onResult={makeApiRequest} />
+            
                     </div>
                 </div>
 
