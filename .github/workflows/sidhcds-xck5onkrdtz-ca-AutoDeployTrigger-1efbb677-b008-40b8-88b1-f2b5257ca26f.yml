@@ -32,7 +32,7 @@ jobs:
         with:
 
           appSourcePath: .devcontainer
-          dockerfilePath: .devcontainer/Dockerfile
+          dockerfilePath: Dockerfile
 
           registryUrl: sidhcdsxck5onkrdtzderegistry.azurecr.io
           registryUsername: ${{ secrets.SIDHCDSXCK5ONKRDTZCA_REGISTRY_USERNAME }}
