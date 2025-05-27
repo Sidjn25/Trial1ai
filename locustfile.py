@@ -16,9 +16,7 @@ class ChatUser(HttpUser):
             json={
                 "messages": [
                     {
-                        "content": random.choice(
-                            ["Welcome", "Enterprise", "Carrier","Job Opportunity","Internship" ]
-                        ),
+                        "content": random.choice(["Welcome", "Enterprise", "Carrier", "Job Opportunity", "Internship"]),
                         "role": "user",
                     }
                 ],
