@@ -90,7 +90,7 @@ class RetrievalResponseDelta(BaseModel):
 
 
 class ChatParams(ChatRequestOverrides):
-    prompt_template: str
+    prompt_template: Optional[str] = None
     response_token_limit: int = 1024
     enable_text_search: bool
     enable_vector_search: bool
