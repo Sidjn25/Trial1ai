@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, "src/backend")
 import socket
 import time
 from collections.abc import Generator
