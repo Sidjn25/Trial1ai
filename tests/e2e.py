@@ -1,5 +1,7 @@
 import sys
 
+sys.path.insert(0, "src/backend")
+
 import socket
 import time
 from collections.abc import Generator
@@ -9,10 +11,9 @@ from multiprocessing import Process
 import pytest
 import requests
 import uvicorn
-from playwright.sync_api import expect, Page, Route
+from playwright.sync_api import Page, Route, expect
 
-sys.path.insert(0, "src/backend")
-import fastapi_app as app  # noqa: E402
+import fastapi_app as app
 
 expect.set_options(timeout=10_000)
 
